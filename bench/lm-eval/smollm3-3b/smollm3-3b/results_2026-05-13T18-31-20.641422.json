@@ -1,0 +1,441 @@
+{
+  "results": {
+    "ifeval": {
+      "name": "ifeval",
+      "alias": "ifeval",
+      "sample_len": 250,
+      "prompt_level_strict_acc,none": 0.652,
+      "prompt_level_strict_acc_stderr,none": 0.030186568464511673,
+      "inst_level_strict_acc,none": 0.7448453608247423,
+      "inst_level_strict_acc_stderr,none": "N/A",
+      "prompt_level_loose_acc,none": 0.684,
+      "prompt_level_loose_acc_stderr,none": 0.02946265759857865,
+      "inst_level_loose_acc,none": 0.770618556701031,
+      "inst_level_loose_acc_stderr,none": "N/A"
+    },
+    "gsm8k": {
+      "name": "gsm8k",
+      "alias": "gsm8k",
+      "sample_len": 250,
+      "exact_match,strict-match": 0.8,
+      "exact_match_stderr,strict-match": 0.025348970020979075,
+      "exact_match,flexible-extract": 0.808,
+      "exact_match_stderr,flexible-extract": 0.02496069198917202
+    },
+    "humaneval_instruct": {
+      "name": "humaneval_instruct",
+      "alias": "humaneval_instruct",
+      "sample_len": 164,
+      "pass@1,create_test": 0.3597560975609756,
+      "pass@1_stderr,create_test": 0.0375909243573624
+    },
+    "mbpp_instruct": {
+      "name": "mbpp_instruct",
+      "alias": "mbpp_instruct",
+      "sample_len": 250,
+      "pass_at_1,extract_code": 0.0,
+      "pass_at_1_stderr,extract_code": 0.0
+    }
+  },
+  "group_subtasks": {},
+  "configs": {
+    "gsm8k": {
+      "task": "gsm8k",
+      "dataset_path": "openai/gsm8k",
+      "dataset_name": "main",
+      "training_split": "train",
+      "test_split": "test",
+      "fewshot_split": "train",
+      "doc_to_text": "Question: {{question}}\nAnswer:",
+      "doc_to_target": "{{answer}}",
+      "unsafe_code": false,
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": "train",
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "Question: {{question}}\nAnswer:",
+        "doc_to_choice": null,
+        "doc_to_target": "{{answer}}",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 5,
+      "metric_list": [
+        {
+          "metric": "exact_match",
+          "aggregation": "mean",
+          "higher_is_better": true,
+          "ignore_case": true,
+          "ignore_punctuation": false,
+          "regexes_to_ignore": [
+            ",",
+            "\\$",
+            "(?s).*#### ",
+            "\\.$"
+          ]
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "Question:",
+          "</s>",
+          "<|im_end|>"
+        ],
+        "do_sample": false,
+        "temperature": 0.0
+      },
+      "repeats": 1,
+      "filter_list": [
+        {
+          "name": "strict-match",
+          "filter": [
+            {
+              "function": "regex",
+              "regex_pattern": "#### (\\-?[0-9\\.\\,]+)"
+            },
+            {
+              "function": "take_first"
+            }
+          ]
+        },
+        {
+          "name": "flexible-extract",
+          "filter": [
+            {
+              "function": "regex",
+              "group_select": -1,
+              "regex_pattern": "(-?[$0-9.,]{2,})|(-?[0-9]+)"
+            },
+            {
+              "function": "take_first"
+            }
+          ]
+        }
+      ],
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 3.0,
+        "base_url": "http://127.0.0.1:18080/v1/chat/completions",
+        "model": "smollm3-3b",
+        "num_concurrent": 4,
+        "tokenized_requests": false,
+        "tokenizer_backend": "huggingface",
+        "tokenizer": "HuggingFaceTB/SmolLM3-3B",
+        "timeout": 1800,
+        "config_source": "/home/michal/.local/share/uv/tools/lm-eval/lib/python3.14/site-packages/lm_eval/tasks/gsm8k/gsm8k.yaml"
+      }
+    },
+    "humaneval_instruct": {
+      "task": "humaneval_instruct",
+      "dataset_path": "openai/openai_humaneval",
+      "test_split": "test",
+      "doc_to_text": "Write a solution to the following problem and make sure that it passes the tests:\n```python\n{{ prompt }}\n```\n",
+      "doc_to_target": "{{test}}\ncheck({{entry_point}})",
+      "unsafe_code": true,
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "Write a solution to the following problem and make sure that it passes the tests:\n```python\n{{ prompt }}\n```\n",
+        "doc_to_choice": null,
+        "doc_to_target": "{{test}}\ncheck({{entry_point}})",
+        "gen_prefix": "Here is the completed function:\n```python\n{{ prompt }}\n",
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "def pass_at_k(references: list[str], predictions: list[list[str]], k: list[int] = None):\n    global compute_\n    assert k is not None\n    if isinstance(k, int):\n        k = [k]\n    res = compute_.compute(\n        references=references,\n        predictions=predictions,\n        k=k,\n    )\n    return res[0]\n",
+          "aggregation": "mean",
+          "higher_is_better": true,
+          "k": [
+            1
+          ]
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "\nclass",
+          "\ndef",
+          "\n#",
+          "\nif",
+          "\nprint"
+        ],
+        "max_gen_toks": 1024,
+        "do_sample": false
+      },
+      "repeats": 1,
+      "filter_list": [
+        {
+          "name": "create_test",
+          "filter": [
+            {
+              "function": "custom",
+              "filter_fn": "<function build_predictions_instruct at 0x7f1a10fd5b10>"
+            }
+          ]
+        }
+      ],
+      "should_decontaminate": false,
+      "gen_prefix": "Here is the completed function:\n```python\n{{ prompt }}\n",
+      "metadata": {
+        "version": 4.0,
+        "base_url": "http://127.0.0.1:18080/v1/chat/completions",
+        "model": "smollm3-3b",
+        "num_concurrent": 4,
+        "tokenized_requests": false,
+        "tokenizer_backend": "huggingface",
+        "tokenizer": "HuggingFaceTB/SmolLM3-3B",
+        "timeout": 1800,
+        "config_source": "/home/michal/.local/share/uv/tools/lm-eval/lib/python3.14/site-packages/lm_eval/tasks/humaneval/humaneval_instruct.yaml"
+      }
+    },
+    "ifeval": {
+      "task": "ifeval",
+      "dataset_path": "google/IFEval",
+      "test_split": "train",
+      "doc_to_text": "prompt",
+      "doc_to_target": 0,
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    inp = InputExample(\n        key=doc[\"key\"],\n        instruction_id_list=doc[\"instruction_id_list\"],\n        prompt=doc[\"prompt\"],\n        kwargs=doc[\"kwargs\"],\n    )\n    response = results[0]\n\n    out_strict = test_instruction_following_strict(inp, response)\n    out_loose = test_instruction_following_loose(inp, response)\n\n    return {\n        \"prompt_level_strict_acc\": out_strict.follow_all_instructions,\n        \"inst_level_strict_acc\": out_strict.follow_instruction_list,\n        \"prompt_level_loose_acc\": out_loose.follow_all_instructions,\n        \"inst_level_loose_acc\": out_loose.follow_instruction_list,\n    }\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "prompt",
+        "doc_to_choice": null,
+        "doc_to_target": 0,
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "prompt_level_strict_acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        },
+        {
+          "metric": "inst_level_strict_acc",
+          "aggregation": "def agg_inst_level_acc(items):\n    flat_items = [item for sublist in items for item in sublist]\n    inst_level_acc = sum(flat_items) / len(flat_items)\n    return inst_level_acc\n",
+          "higher_is_better": true
+        },
+        {
+          "metric": "prompt_level_loose_acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        },
+        {
+          "metric": "inst_level_loose_acc",
+          "aggregation": "def agg_inst_level_acc(items):\n    flat_items = [item for sublist in items for item in sublist]\n    inst_level_acc = sum(flat_items) / len(flat_items)\n    return inst_level_acc\n",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [],
+        "do_sample": false,
+        "temperature": 0.0,
+        "max_gen_toks": 1280
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 4.0,
+        "base_url": "http://127.0.0.1:18080/v1/chat/completions",
+        "model": "smollm3-3b",
+        "num_concurrent": 4,
+        "tokenized_requests": false,
+        "tokenizer_backend": "huggingface",
+        "tokenizer": "HuggingFaceTB/SmolLM3-3B",
+        "timeout": 1800,
+        "config_source": "/home/michal/.local/share/uv/tools/lm-eval/lib/python3.14/site-packages/lm_eval/tasks/ifeval/ifeval.yaml"
+      }
+    },
+    "mbpp_instruct": {
+      "task": "mbpp_instruct",
+      "dataset_path": "google-research-datasets/mbpp",
+      "dataset_name": "full",
+      "test_split": "test",
+      "doc_to_text": "You are an expert Python programmer, and here is your task:\n{{text}}\nYour code should pass these tests:\n{{test_list[0]}}\n{{test_list[1]}}\n{{test_list[2]}}",
+      "doc_to_target": "{% if is_fewshot is defined %}{{code}}\n```{% else %}{{test_list[0]}}\n{{test_list[1]}}\n{{test_list[2]}}{% endif %}",
+      "unsafe_code": true,
+      "description": "",
+      "target_delimiter": "",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": "<function list_fewshot_samples at 0x7f1a10fe3b60>",
+        "doc_to_text": "You are an expert Python programmer, and here is your task:\n{{text}}\nYour code should pass these tests:\n{{test_list[0]}}\n{{test_list[1]}}\n{{test_list[2]}}",
+        "doc_to_choice": null,
+        "doc_to_target": "{% if is_fewshot is defined %}{{code}}\n```{% else %}{{test_list[0]}}\n{{test_list[1]}}\n{{test_list[2]}}{% endif %}",
+        "gen_prefix": "\n```python\n",
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": ""
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "def pass_at_1(\n    references: Union[str, list[str]], predictions: Union[str, list[list[str]]]\n) -> float:\n    if isinstance(references, str):\n        references = [references]\n    if isinstance(predictions[0], str):\n        predictions = [[p] for p in predictions]\n    return pass_at_k.compute(\n        references=references,\n        predictions=predictions,\n        k=[1],\n    )[0][\"pass@1\"]\n",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "max_gen_toks": 256,
+        "until": [],
+        "do_sample": false
+      },
+      "repeats": 1,
+      "filter_list": [
+        {
+          "name": "extract_code",
+          "filter": [
+            {
+              "function": "custom",
+              "filter_fn": "<function build_predictions at 0x7f1a10fe3a00>"
+            }
+          ]
+        }
+      ],
+      "should_decontaminate": false,
+      "gen_prefix": "\n```python\n",
+      "metadata": {
+        "version": 1.0,
+        "base_url": "http://127.0.0.1:18080/v1/chat/completions",
+        "model": "smollm3-3b",
+        "num_concurrent": 4,
+        "tokenized_requests": false,
+        "tokenizer_backend": "huggingface",
+        "tokenizer": "HuggingFaceTB/SmolLM3-3B",
+        "timeout": 1800,
+        "config_source": "/home/michal/.local/share/uv/tools/lm-eval/lib/python3.14/site-packages/lm_eval/tasks/mbpp/mbpp_instruct.yaml"
+      }
+    }
+  },
+  "versions": {
+    "gsm8k": 3.0,
+    "humaneval_instruct": 4.0,
+    "ifeval": 4.0,
+    "mbpp_instruct": 1.0
+  },
+  "n-shot": {
+    "gsm8k": 5,
+    "humaneval_instruct": 0,
+    "ifeval": 0,
+    "mbpp_instruct": 3
+  },
+  "higher_is_better": {
+    "gsm8k": {
+      "exact_match": true
+    },
+    "humaneval_instruct": {
+      "pass_at_k": true,
+      "pass@1": true
+    },
+    "ifeval": {
+      "prompt_level_strict_acc": true,
+      "inst_level_strict_acc": true,
+      "prompt_level_loose_acc": true,
+      "inst_level_loose_acc": true
+    },
+    "mbpp_instruct": {
+      "pass_at_1": true
+    }
+  },
+  "n-samples": {
+    "ifeval": {
+      "original": 541,
+      "effective": 250
+    },
+    "gsm8k": {
+      "original": 1319,
+      "effective": 250
+    },
+    "humaneval_instruct": {
+      "original": 164,
+      "effective": 164
+    },
+    "mbpp_instruct": {
+      "original": 500,
+      "effective": 250
+    }
+  },
+  "config": {
+    "model": "local-chat-completions",
+    "model_args": {
+      "base_url": "http://127.0.0.1:18080/v1/chat/completions",
+      "model": "smollm3-3b",
+      "num_concurrent": 4,
+      "tokenized_requests": false,
+      "tokenizer_backend": "huggingface",
+      "tokenizer": "HuggingFaceTB/SmolLM3-3B",
+      "timeout": 1800
+    },
+    "batch_size": "1",
+    "batch_sizes": [],
+    "device": "cuda:0",
+    "use_cache": null,
+    "limit": 250.0,
+    "bootstrap_iters": 100000,
+    "gen_kwargs": {},
+    "random_seed": 42,
+    "numpy_seed": 42,
+    "torch_seed": 42,
+    "fewshot_seed": 42
+  },
+  "git_hash": null,
+  "date": 1778686398.8121417,
+  "pretty_env_info": "N/A (torch not installed)",
+  "transformers_version": "5.8.0",
+  "lm_eval_version": "0.4.12",
+  "upper_git_hash": null,
+  "tokenizer_pad_token": [
+    "<|im_end|>",
+    "128012"
+  ],
+  "tokenizer_eos_token": [
+    "<|im_end|>",
+    "128012"
+  ],
+  "tokenizer_bos_token": [
+    null,
+    "None"
+  ],
+  "eot_token_id": 128012,
+  "max_length": 2047,
+  "task_hashes": {},
+  "model_source": "local-chat-completions",
+  "model_name": "smollm3-3b",
+  "model_name_sanitized": "smollm3-3b",
+  "system_instruction": null,
+  "system_instruction_sha": null,
+  "fewshot_as_multiturn": true,
+  "chat_template": "{# ───── defaults ───── #}\n{%- if enable_thinking is not defined -%}\n{%- set enable_thinking = true -%}\n{%- endif -%}\n\n{# ───── reasoning mode ───── #}\n{%- if enable_thinking -%}\n  {%- set reasoning_mode = \"/think\" -%}\n{%- else -%}\n  {%- set reasoning_mode = \"/no_think\" -%}\n{%- endif -%}\n\n{# ───── header (system message) ───── #}\n{{- \"<|im_start|>system\\n\" -}}\n\n{%- if messages[0].role == \"system\" -%}\n  {%- set system_message = messages[0].content -%}\n  {%- if \"/no_think\" in system_message -%}\n    {%- set reasoning_mode = \"/no_think\" -%}\n  {%- elif \"/think\" in system_message -%}\n    {%- set reasoning_mode = \"/think\" -%}\n  {%- endif -%}\n  {%- set custom_instructions = system_message.replace(\"/no_think\", \"\").replace(\"/think\", \"\").rstrip() -%}\n{%- endif -%}\n\n{%- if \"/system_override\" in system_message -%}\n  {{- custom_instructions.replace(\"/system_override\", \"\").rstrip() -}}\n  {{- \"<|im_end|>\\n\" -}}\n{%- else -%}\n  {{- \"## Metadata\\n\\n\" -}}\n  {{- \"Knowledge Cutoff Date: June 2025\\n\" -}}\n  {%- set today = strftime_now(\"%d %B %Y\") -%}\n  {{- \"Today Date: \" ~ today ~ \"\\n\" -}}\n  {{- \"Reasoning Mode: \" + reasoning_mode + \"\\n\\n\" -}}\n  \n  {{- \"## Custom Instructions\\n\\n\" -}}\n  {%- if custom_instructions -%}\n    {{- custom_instructions + \"\\n\\n\" -}}\n  {%- elif reasoning_mode == \"/think\" -%}\n    {{- \"You are a helpful AI assistant named SmolLM, trained by Hugging Face. Your role as an assistant involves thoroughly exploring questions through a systematic thinking process before providing the final precise and accurate solutions. This requires engaging in a comprehensive cycle of analysis, summarizing, exploration, reassessment, reflection, backtracking, and iteration to develop well-considered thinking process. Please structure your response into two main sections: Thought and Solution using the specified format: <think> Thought section </think> Solution section. In the Thought section, detail your reasoning process in steps. Each step should include detailed considerations such as analysing questions, summarizing relevant findings, brainstorming new ideas, verifying the accuracy of the current steps, refining any errors, and revisiting previous steps. In the Solution section, based on various attempts, explorations, and reflections from the Thought section, systematically present the final solution that you deem correct. The Solution section should be logical, accurate, and concise and detail necessary steps needed to reach the conclusion.\\n\\n\" -}}\n  {%- else -%}\n    {{- \"You are a helpful AI assistant named SmolLM, trained by Hugging Face.\\n\\n\" -}}\n  {%- endif -%}\n\n  {%- if xml_tools or python_tools or tools -%}\n    {{- \"### Tools\\n\\n\" -}}\n    {%- if xml_tools or tools -%}\n      {%- if tools -%}\n        {%- set xml_tools = tools -%}\n      {%- endif -%}\n      {%- set ns = namespace(xml_tool_string=\"You may call one or more functions to assist with the user query.\\nYou are provided with function signatures within <tools></tools> XML tags:\\n\\n<tools>\\n\") -%}\n      {%- for tool in xml_tools[:] -%} {# The slicing makes sure that xml_tools is a list #}\n        {%- set ns.xml_tool_string = ns.xml_tool_string ~ (tool | string) ~ \"\\n\" -%}\n      {%- endfor -%}\n      {%- set xml_tool_string = ns.xml_tool_string + \"</tools>\\n\\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\\n<tool_call>\\n{\\\"name\\\": <function-name>, \\\"arguments\\\": <args-json-object>}\\n</tool_call>\" -%}\n      {{- xml_tool_string -}}\n    {%- endif -%}\n    {%- if python_tools -%}\n      {%- set ns = namespace(python_tool_string=\"When you send a message containing Python code between '<code>' and '</code>' tags, it will be executed in a stateful Jupyter notebook environment, and you will then be given the output to continued reasoning in an agentic loop.\\n\\nYou can use the following tools in your python code like regular functions:\\n<tools>\\n\") -%}\n      {%- for tool in python_tools[:] -%} {# The slicing makes sure that python_tools is a list #}\n        {%- set ns.python_tool_string = ns.python_tool_string ~ (tool | string) ~ \"\\n\" -%}\n      {%- endfor -%}\n      {%- set python_tool_string = ns.python_tool_string + \"</tools>\\n\\nThe state persists between code executions: so variables that you define in one step are still available thereafter.\" -%}\n      {{- python_tool_string -}}\n    {%- endif -%}\n    {{- \"\\n\\n\" -}}\n    {{- \"<|im_end|>\\n\" -}}\n  {%- endif -%}\n{%- endif -%}\n{# ───── main loop ───── #}\n{%- for message in messages -%}\n    {%- set content = message.content if message.content is string else \"\" -%}\n    {%- if message.role == \"user\" -%}\n        {{ \"<|im_start|>\" + message.role + \"\\n\"  + content + \"<|im_end|>\\n\" }}\n    {%- elif message.role == \"assistant\" -%}\n        {% generation %}\n        {%- if reasoning_mode == \"/think\" -%}\n            {{ \"<|im_start|>assistant\\n\" + content.lstrip(\"\\n\") + \"<|im_end|>\\n\" }}\n        {%- else -%}\n            {{ \"<|im_start|>assistant\\n\" + \"<think>\\n\\n</think>\\n\" + content.lstrip(\"\\n\") + \"<|im_end|>\\n\" }}\n        {%- endif -%}\n        {% endgeneration %}\n    {%- elif message.role == \"tool\" -%}\n    {{ \"<|im_start|>\" + \"user\\n\"  + content + \"<|im_end|>\\n\" }}\n    {%- endif -%}\n{%- endfor -%}\n{# ───── generation prompt ───── #}\n{%- if add_generation_prompt -%}\n    {%- if reasoning_mode == \"/think\" -%}\n        {{ \"<|im_start|>assistant\\n\" }}\n    {%- else -%}\n        {{ \"<|im_start|>assistant\\n\" + \"<think>\\n\\n</think>\\n\"  }}\n    {%- endif -%}\n{%- endif -%}",
+  "chat_template_sha": "3e0e275a527f249670056e0078e474eadbdd007c134b4fdfae5a7b3089702814",
+  "total_evaluation_time_seconds": "3484.2948328850034"
+}

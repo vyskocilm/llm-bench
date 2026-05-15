@@ -1,0 +1,1018 @@
+{
+  "schema": 1,
+  "seed": 42,
+  "complete": true,
+  "buildinfo": "llama.cpp commit: 838374375cb8c467c33c263be4801c19d1089763\nbuilt: 2026-05-11T10:07:09+02:00\nhost:  Linux 7.0.2-1-default #1 SMP PREEMPT_DYNAMIC Tue Apr 28 04:27:33 UTC 2026 (46da294) x86_64\ncpu:   AMD Ryzen AI 7 PRO 350 w/ Radeon 860M",
+  "models": [
+    {
+      "id": "smollm2-1.7b",
+      "license": "Apache-2.0",
+      "kind": "text",
+      "repo": "HuggingFaceTB/SmolLM2-1.7B-Instruct-GGUF",
+      "file": "smollm2-1.7b-instruct-q4_k_m.gguf",
+      "mmproj_repo": null,
+      "mmproj_file": null,
+      "user_suffix": null,
+      "template_kwargs": null
+    },
+    {
+      "id": "olmo2-7b",
+      "license": "Apache-2.0",
+      "kind": "text",
+      "repo": "allenai/OLMo-2-1124-7B-Instruct-GGUF",
+      "file": "olmo-2-1124-7B-instruct-Q4_K_M.gguf",
+      "mmproj_repo": null,
+      "mmproj_file": null,
+      "user_suffix": null,
+      "template_kwargs": null
+    },
+    {
+      "id": "mistral-7b-v0.3",
+      "license": "Apache-2.0",
+      "kind": "text",
+      "repo": "bartowski/Mistral-7B-Instruct-v0.3-GGUF",
+      "file": "Mistral-7B-Instruct-v0.3-Q4_K_M.gguf",
+      "mmproj_repo": null,
+      "mmproj_file": null,
+      "user_suffix": null,
+      "template_kwargs": null
+    },
+    {
+      "id": "qwen3-8b",
+      "license": "Apache-2.0",
+      "kind": "text",
+      "repo": "Qwen/Qwen3-8B-GGUF",
+      "file": "Qwen3-8B-Q4_K_M.gguf",
+      "mmproj_repo": null,
+      "mmproj_file": null,
+      "user_suffix": " /no_think",
+      "template_kwargs": null
+    },
+    {
+      "id": "mistral-nemo-2407",
+      "license": "Apache-2.0",
+      "kind": "text",
+      "repo": "bartowski/Mistral-Nemo-Instruct-2407-GGUF",
+      "file": "Mistral-Nemo-Instruct-2407-Q4_K_M.gguf",
+      "mmproj_repo": null,
+      "mmproj_file": null,
+      "user_suffix": null,
+      "template_kwargs": null
+    },
+    {
+      "id": "phi-4",
+      "license": "MIT",
+      "kind": "text",
+      "repo": "bartowski/phi-4-GGUF",
+      "file": "phi-4-Q4_K_M.gguf",
+      "mmproj_repo": null,
+      "mmproj_file": null,
+      "user_suffix": null,
+      "template_kwargs": null
+    },
+    {
+      "id": "gemma-4-e2b",
+      "license": "Apache-2.0",
+      "kind": "text",
+      "repo": "unsloth/gemma-4-E2B-it-GGUF",
+      "file": "gemma-4-E2B-it-Q4_K_M.gguf",
+      "mmproj_repo": null,
+      "mmproj_file": null,
+      "user_suffix": null,
+      "template_kwargs": {
+        "enable_thinking": false
+      }
+    }
+  ],
+  "tasks": [
+    "analyze",
+    "prose",
+    "codegen",
+    "codereview"
+  ],
+  "results": [
+    {
+      "task": "analyze",
+      "model": "smollm2-1.7b",
+      "prompt_idx": 0,
+      "output": "2016",
+      "score": 1.0,
+      "detail": {
+        "any_of": [
+          "2016"
+        ],
+        "hit": "2016"
+      },
+      "latency_s": 0.23450493812561035,
+      "prompt_tokens": 107,
+      "completion_tokens": 5,
+      "gen_tok_s": 80.72067417907076,
+      "prompt_tok_s": 630.301602262017
+    },
+    {
+      "task": "analyze",
+      "model": "smollm2-1.7b",
+      "prompt_idx": 1,
+      "output": "Bas Nieuwenhuizen",
+      "score": 0.5,
+      "detail": {
+        "all_of": [
+          "bas",
+          "airlie"
+        ],
+        "present": [
+          "bas"
+        ]
+      },
+      "latency_s": 0.15124011039733887,
+      "prompt_tokens": 107,
+      "completion_tokens": 8,
+      "gen_tok_s": 74.58512026850643,
+      "prompt_tok_s": 287.62493708204505
+    },
+    {
+      "task": "analyze",
+      "model": "smollm2-1.7b",
+      "prompt_idx": 2,
+      "output": "Khronos Group",
+      "score": 1.0,
+      "detail": {
+        "any_of": [
+          "khronos"
+        ],
+        "hit": "khronos"
+      },
+      "latency_s": 0.1050419807434082,
+      "prompt_tokens": 108,
+      "completion_tokens": 5,
+      "gen_tok_s": 81.40405717820977,
+      "prompt_tok_s": 313.487183197087
+    },
+    {
+      "task": "prose",
+      "model": "smollm2-1.7b",
+      "prompt_idx": 0,
+      "output": "In code, the GPU sings,\nOpen-source, it sings.\nEach line, a new song,\nFor the world's delight, it's so.",
+      "score": 1.0,
+      "detail": {
+        "words": 22,
+        "distinct": 18,
+        "type_token_ratio": 0.818
+      },
+      "latency_s": 0.585902214050293,
+      "prompt_tokens": 41,
+      "completion_tokens": 35,
+      "gen_tok_s": 68.51057999099575,
+      "prompt_tok_s": 629.7325940375075
+    },
+    {
+      "task": "codegen",
+      "model": "smollm2-1.7b",
+      "prompt_idx": 0,
+      "output": "```python\ndef is_palindrome(s: str) -> bool:\n    s = ''.join(c for c in s if c.isalnum()).lower()\n    return s == s[::-1]\n```",
+      "score": 1.0,
+      "detail": {
+        "passed": 5,
+        "total": 5
+      },
+      "latency_s": 0.8781263828277588,
+      "prompt_tokens": 72,
+      "completion_tokens": 48,
+      "gen_tok_s": 67.14441785090303,
+      "prompt_tok_s": 466.2850037561847
+    },
+    {
+      "task": "codereview",
+      "model": "smollm2-1.7b",
+      "prompt_idx": 0,
+      "output": "The bug in this code is that it's not correctly handling the case where the input list is empty. The function will raise a ZeroDivisionError when it tries to divide by the length of the list, because len(nums) will be 0. To fix this, you should add a check for this case and return a special value (like None or a specific constant) or raise a custom error. Here's an example:\n\n```python\ndef average(nums):\n    if len(nums) == 0:\n        return None\n    total = 0\n    for i in range(1, len(nums)):\n        total += nums[i]\n    return total / len(nums)\n```",
+      "score": 1.0,
+      "detail": {
+        "any_of": [
+          "range(1",
+          "range(0",
+          "range(len",
+          "off-by-one",
+          "off by one",
+          "index 0",
+          "starts at 1",
+          "start at 1",
+          "starts at 0",
+          "start at 0",
+          "starts from 0",
+          "start from 0",
+          "starting from 0",
+          "skip",
+          "first element",
+          "first number",
+          "first item",
+          "first value",
+          "include the first",
+          "missing the first",
+          "missing first",
+          "doesn't include the first",
+          "does not include the first",
+          "should start at 0"
+        ],
+        "hit": "range(1"
+      },
+      "latency_s": 2.3714659214019775,
+      "prompt_tokens": 75,
+      "completion_tokens": 146,
+      "gen_tok_s": 66.20636615022677,
+      "prompt_tok_s": 478.12422304813754
+    },
+    {
+      "task": "analyze",
+      "model": "olmo2-7b",
+      "prompt_idx": 0,
+      "output": "2016",
+      "score": 1.0,
+      "detail": {
+        "any_of": [
+          "2016"
+        ],
+        "hit": "2016"
+      },
+      "latency_s": 0.7728986740112305,
+      "prompt_tokens": 97,
+      "completion_tokens": 3,
+      "gen_tok_s": 26.28558410948822,
+      "prompt_tok_s": 147.88546651766316
+    },
+    {
+      "task": "analyze",
+      "model": "olmo2-7b",
+      "prompt_idx": 1,
+      "output": "Bas Nieuwenhuizen and David Airlie",
+      "score": 1.0,
+      "detail": {
+        "all_of": [
+          "bas",
+          "airlie"
+        ],
+        "present": [
+          "bas",
+          "airlie"
+        ]
+      },
+      "latency_s": 0.7888145446777344,
+      "prompt_tokens": 98,
+      "completion_tokens": 12,
+      "gen_tok_s": 18.980314250736278,
+      "prompt_tok_s": 71.22092082175993
+    },
+    {
+      "task": "analyze",
+      "model": "olmo2-7b",
+      "prompt_idx": 2,
+      "output": "Khronos Group",
+      "score": 1.0,
+      "detail": {
+        "any_of": [
+          "khronos"
+        ],
+        "hit": "khronos"
+      },
+      "latency_s": 0.39078855514526367,
+      "prompt_tokens": 98,
+      "completion_tokens": 5,
+      "gen_tok_s": 21.68520028450983,
+      "prompt_tok_s": 69.51949389808442
+    },
+    {
+      "task": "prose",
+      "model": "olmo2-7b",
+      "prompt_idx": 0,
+      "output": "In open arms, the code lies bare,\nA gift to all, software fair.\nNVIDIA's secrets, now untied,\nIn freedom's grasp, no longer hide.",
+      "score": 1.0,
+      "detail": {
+        "words": 25,
+        "distinct": 23,
+        "type_token_ratio": 0.92
+      },
+      "latency_s": 2.261267900466919,
+      "prompt_tokens": 40,
+      "completion_tokens": 36,
+      "gen_tok_s": 17.998803079595206,
+      "prompt_tok_s": 140.5830059954517
+    },
+    {
+      "task": "codegen",
+      "model": "olmo2-7b",
+      "prompt_idx": 0,
+      "output": "```python\ndef is_palindrome(s: str) -> bool:\n    s = ''.join(c for c in s.lower() if c.isalnum())\n    return s == s[::-1]\n```",
+      "score": 1.0,
+      "detail": {
+        "passed": 5,
+        "total": 5
+      },
+      "latency_s": 2.616504669189453,
+      "prompt_tokens": 63,
+      "completion_tokens": 41,
+      "gen_tok_s": 17.890492730351003,
+      "prompt_tok_s": 202.59254137872264
+    },
+    {
+      "task": "codereview",
+      "model": "olmo2-7b",
+      "prompt_idx": 0,
+      "output": "The bug is that the loop starts at index 1, omitting the first element of the list `nums`.",
+      "score": 1.0,
+      "detail": {
+        "any_of": [
+          "range(1",
+          "range(0",
+          "range(len",
+          "off-by-one",
+          "off by one",
+          "index 0",
+          "starts at 1",
+          "start at 1",
+          "starts at 0",
+          "start at 0",
+          "starts from 0",
+          "start from 0",
+          "starting from 0",
+          "skip",
+          "first element",
+          "first number",
+          "first item",
+          "first value",
+          "include the first",
+          "missing the first",
+          "missing first",
+          "doesn't include the first",
+          "does not include the first",
+          "should start at 0"
+        ],
+        "hit": "first element"
+      },
+      "latency_s": 1.9341297149658203,
+      "prompt_tokens": 73,
+      "completion_tokens": 24,
+      "gen_tok_s": 18.086535026835897,
+      "prompt_tok_s": 123.97571434636777
+    },
+    {
+      "task": "analyze",
+      "model": "mistral-7b-v0.3",
+      "prompt_idx": 0,
+      "output": " Vulkan was released in 2016.",
+      "score": 1.0,
+      "detail": {
+        "any_of": [
+          "2016"
+        ],
+        "hit": "2016"
+      },
+      "latency_s": 1.379086971282959,
+      "prompt_tokens": 104,
+      "completion_tokens": 13,
+      "gen_tok_s": 18.890928140362504,
+      "prompt_tok_s": 151.1052477109008
+    },
+    {
+      "task": "analyze",
+      "model": "mistral-7b-v0.3",
+      "prompt_idx": 1,
+      "output": " Bas Nieuwenhuizen and David Airlie originally wrote RADV.",
+      "score": 1.0,
+      "detail": {
+        "all_of": [
+          "bas",
+          "airlie"
+        ],
+        "present": [
+          "bas",
+          "airlie"
+        ]
+      },
+      "latency_s": 1.1259536743164062,
+      "prompt_tokens": 104,
+      "completion_tokens": 18,
+      "gen_tok_s": 18.66077815444904,
+      "prompt_tok_s": 56.732939144467274
+    },
+    {
+      "task": "analyze",
+      "model": "mistral-7b-v0.3",
+      "prompt_idx": 2,
+      "output": " The Khronos Group",
+      "score": 1.0,
+      "detail": {
+        "any_of": [
+          "khronos"
+        ],
+        "hit": "khronos"
+      },
+      "latency_s": 0.4509890079498291,
+      "prompt_tokens": 105,
+      "completion_tokens": 6,
+      "gen_tok_s": 21.085999247932694,
+      "prompt_tok_s": 61.16058322732166
+    },
+    {
+      "task": "prose",
+      "model": "mistral-7b-v0.3",
+      "prompt_idx": 0,
+      "output": " Silicon dreams in open air,\nCode weaves, like stars in a lair.\nNVIDIA, AMD, all share,\nUnited by open-source flare.",
+      "score": 1.0,
+      "detail": {
+        "words": 21,
+        "distinct": 19,
+        "type_token_ratio": 0.905
+      },
+      "latency_s": 2.4659905433654785,
+      "prompt_tokens": 34,
+      "completion_tokens": 40,
+      "gen_tok_s": 18.13615628651318,
+      "prompt_tok_s": 135.1646822636109
+    },
+    {
+      "task": "codegen",
+      "model": "mistral-7b-v0.3",
+      "prompt_idx": 0,
+      "output": " ```python\ndef is_palindrome(s: str) -> bool:\n    s = ''.join(c.lower() for c in s if c.isalnum())\n    return s == s[::-1]\n```",
+      "score": 1.0,
+      "detail": {
+        "passed": 5,
+        "total": 5
+      },
+      "latency_s": 3.320521831512451,
+      "prompt_tokens": 63,
+      "completion_tokens": 55,
+      "gen_tok_s": 18.33799118309384,
+      "prompt_tok_s": 201.21045655610735
+    },
+    {
+      "task": "codereview",
+      "model": "mistral-7b-v0.3",
+      "prompt_idx": 0,
+      "output": " The bug in your code is that it does not include the first number in the sum when calculating the average. The correct loop should start from 0 instead of 1. Here's the corrected version:\n\n```python\ndef average(nums):\n    total = 0\n    for i in range(len(nums)):\n        total += nums[i]\n    return total / len(nums)\n```\nOr even better, use a list comprehension for a more Pythonic solution:\n\n```python\ndef average(nums):\n    return sum(nums) / len(nums)\n```",
+      "score": 1.0,
+      "detail": {
+        "any_of": [
+          "range(1",
+          "range(0",
+          "range(len",
+          "off-by-one",
+          "off by one",
+          "index 0",
+          "starts at 1",
+          "start at 1",
+          "starts at 0",
+          "start at 0",
+          "starts from 0",
+          "start from 0",
+          "starting from 0",
+          "skip",
+          "first element",
+          "first number",
+          "first item",
+          "first value",
+          "include the first",
+          "missing the first",
+          "missing first",
+          "doesn't include the first",
+          "does not include the first",
+          "should start at 0"
+        ],
+        "hit": "range(len"
+      },
+      "latency_s": 8.639962673187256,
+      "prompt_tokens": 79,
+      "completion_tokens": 142,
+      "gen_tok_s": 17.82127395753391,
+      "prompt_tok_s": 118.96945346336645
+    },
+    {
+      "task": "analyze",
+      "model": "qwen3-8b",
+      "prompt_idx": 0,
+      "output": "Vulkan was released in 2016.",
+      "score": 1.0,
+      "detail": {
+        "any_of": [
+          "2016"
+        ],
+        "hit": "2016"
+      },
+      "latency_s": 1.6368544101715088,
+      "prompt_tokens": 100,
+      "completion_tokens": 16,
+      "gen_tok_s": 17.194539014409024,
+      "prompt_tok_s": 142.58561909962884
+    },
+    {
+      "task": "analyze",
+      "model": "qwen3-8b",
+      "prompt_idx": 1,
+      "output": "RADV was originally written by Bas Nieuwenhuizen and David Airlie.",
+      "score": 1.0,
+      "detail": {
+        "all_of": [
+          "bas",
+          "airlie"
+        ],
+        "present": [
+          "bas",
+          "airlie"
+        ]
+      },
+      "latency_s": 1.548436164855957,
+      "prompt_tokens": 101,
+      "completion_tokens": 23,
+      "gen_tok_s": 16.70397220459025,
+      "prompt_tok_s": 91.48126463700234
+    },
+    {
+      "task": "analyze",
+      "model": "qwen3-8b",
+      "prompt_idx": 2,
+      "output": "Khronos Group",
+      "score": 1.0,
+      "detail": {
+        "any_of": [
+          "khronos"
+        ],
+        "hit": "khronos"
+      },
+      "latency_s": 0.6925880908966064,
+      "prompt_tokens": 101,
+      "completion_tokens": 9,
+      "gen_tok_s": 17.787615866553352,
+      "prompt_tok_s": 84.62289218479383
+    },
+    {
+      "task": "prose",
+      "model": "qwen3-8b",
+      "prompt_idx": 0,
+      "output": "Code flows wild, unshackled, free,  \nA GPU's heart, open to me.  \nNo locks, no chains, just pure compute,  \nA shared dream built by many, true.",
+      "score": 1.0,
+      "detail": {
+        "words": 26,
+        "distinct": 24,
+        "type_token_ratio": 0.923
+      },
+      "latency_s": 3.1776225566864014,
+      "prompt_tokens": 41,
+      "completion_tokens": 47,
+      "gen_tok_s": 16.331131410359987,
+      "prompt_tok_s": 145.48706229685038
+    },
+    {
+      "task": "codegen",
+      "model": "qwen3-8b",
+      "prompt_idx": 0,
+      "output": "```python\nimport re\n\ndef is_palindrome(s: str) -> bool:\n    cleaned = re.sub(r'[^a-zA-Z0-9]', '', s)\n    cleaned = cleaned.lower()\n    return cleaned == cleaned[::-1]\n```",
+      "score": 1.0,
+      "detail": {
+        "passed": 5,
+        "total": 5
+      },
+      "latency_s": 3.7405948638916016,
+      "prompt_tokens": 64,
+      "completion_tokens": 55,
+      "gen_tok_s": 16.157457063026715,
+      "prompt_tok_s": 199.372599351416
+    },
+    {
+      "task": "codereview",
+      "model": "qwen3-8b",
+      "prompt_idx": 0,
+      "output": "The code incorrectly starts the loop from index 1, skipping the first element of the list, leading to an incorrect average calculation.",
+      "score": 1.0,
+      "detail": {
+        "any_of": [
+          "range(1",
+          "range(0",
+          "range(len",
+          "off-by-one",
+          "off by one",
+          "index 0",
+          "starts at 1",
+          "start at 1",
+          "starts at 0",
+          "start at 0",
+          "starts from 0",
+          "start from 0",
+          "starting from 0",
+          "skip",
+          "first element",
+          "first number",
+          "first item",
+          "first value",
+          "include the first",
+          "missing the first",
+          "missing first",
+          "doesn't include the first",
+          "does not include the first",
+          "should start at 0"
+        ],
+        "hit": "skip"
+      },
+      "latency_s": 2.5491645336151123,
+      "prompt_tokens": 73,
+      "completion_tokens": 31,
+      "gen_tok_s": 16.56001482922618,
+      "prompt_tok_s": 111.3410804355419
+    },
+    {
+      "task": "analyze",
+      "model": "mistral-nemo-2407",
+      "prompt_idx": 0,
+      "output": "Vulkan was released in 2016.",
+      "score": 1.0,
+      "detail": {
+        "any_of": [
+          "2016"
+        ],
+        "hit": "2016"
+      },
+      "latency_s": 2.099982738494873,
+      "prompt_tokens": 88,
+      "completion_tokens": 12,
+      "gen_tok_s": 11.642878003013564,
+      "prompt_tok_s": 82.66947241845784
+    },
+    {
+      "task": "analyze",
+      "model": "mistral-nemo-2407",
+      "prompt_idx": 1,
+      "output": "Bas Nieuwenhuizen and David Airlie",
+      "score": 1.0,
+      "detail": {
+        "all_of": [
+          "bas",
+          "airlie"
+        ],
+        "present": [
+          "bas",
+          "airlie"
+        ]
+      },
+      "latency_s": 0.9912681579589844,
+      "prompt_tokens": 88,
+      "completion_tokens": 10,
+      "gen_tok_s": 11.840653225157125,
+      "prompt_tok_s": 49.15247096493323
+    },
+    {
+      "task": "analyze",
+      "model": "mistral-nemo-2407",
+      "prompt_idx": 2,
+      "output": "Khronos Group",
+      "score": 1.0,
+      "detail": {
+        "any_of": [
+          "khronos"
+        ],
+        "hit": "khronos"
+      },
+      "latency_s": 0.5426356792449951,
+      "prompt_tokens": 89,
+      "completion_tokens": 5,
+      "gen_tok_s": 13.268230548774016,
+      "prompt_tok_s": 49.95566434789125
+    },
+    {
+      "task": "prose",
+      "model": "mistral-nemo-2407",
+      "prompt_idx": 0,
+      "output": "Open code,\nIn silicon sea,\nUnlocks graphics' might,\nSharing power free.",
+      "score": 0.775,
+      "detail": {
+        "words": 11,
+        "distinct": 11,
+        "type_token_ratio": 1.0
+      },
+      "latency_s": 2.088838577270508,
+      "prompt_tokens": 27,
+      "completion_tokens": 20,
+      "gen_tok_s": 11.153979572601811,
+      "prompt_tok_s": 98.58980070254361
+    },
+    {
+      "task": "codegen",
+      "model": "mistral-nemo-2407",
+      "prompt_idx": 0,
+      "output": "```python\ndef is_palindrome(s: str) -> bool:\n    s = ''.join(c.lower() for c in s if c.isalnum())\n    return s == s[::-1]\n```",
+      "score": 1.0,
+      "detail": {
+        "passed": 5,
+        "total": 5
+      },
+      "latency_s": 4.73299765586853,
+      "prompt_tokens": 54,
+      "completion_tokens": 46,
+      "gen_tok_s": 10.785784242578854,
+      "prompt_tok_s": 119.4449789975912
+    },
+    {
+      "task": "codereview",
+      "model": "mistral-nemo-2407",
+      "prompt_idx": 0,
+      "output": "The bug is that the function doesn't handle the case when the input list is empty, as it will cause a division by zero error.",
+      "score": 0.0,
+      "detail": {
+        "any_of": [
+          "range(1",
+          "range(0",
+          "range(len",
+          "off-by-one",
+          "off by one",
+          "index 0",
+          "starts at 1",
+          "start at 1",
+          "starts at 0",
+          "start at 0",
+          "starts from 0",
+          "start from 0",
+          "starting from 0",
+          "skip",
+          "first element",
+          "first number",
+          "first item",
+          "first value",
+          "include the first",
+          "missing the first",
+          "missing first",
+          "doesn't include the first",
+          "does not include the first",
+          "should start at 0"
+        ],
+        "hit": null
+      },
+      "latency_s": 3.139904022216797,
+      "prompt_tokens": 59,
+      "completion_tokens": 29,
+      "gen_tok_s": 10.976341819938034,
+      "prompt_tok_s": 123.58971565986432
+    },
+    {
+      "task": "analyze",
+      "model": "phi-4",
+      "prompt_idx": 0,
+      "output": "Vulkan was released in 2016.",
+      "score": 1.0,
+      "detail": {
+        "any_of": [
+          "2016"
+        ],
+        "hit": "2016"
+      },
+      "latency_s": 2.4474267959594727,
+      "prompt_tokens": 92,
+      "completion_tokens": 10,
+      "gen_tok_s": 9.530281038457543,
+      "prompt_tok_s": 65.88228554241888
+    },
+    {
+      "task": "analyze",
+      "model": "phi-4",
+      "prompt_idx": 1,
+      "output": "RADV was originally written by Bas Nieuwenhuizen and David Airlie.",
+      "score": 1.0,
+      "detail": {
+        "all_of": [
+          "bas",
+          "airlie"
+        ],
+        "present": [
+          "bas",
+          "airlie"
+        ]
+      },
+      "latency_s": 2.5155270099639893,
+      "prompt_tokens": 93,
+      "completion_tokens": 19,
+      "gen_tok_s": 8.699709383918632,
+      "prompt_tok_s": 30.448537404505775
+    },
+    {
+      "task": "analyze",
+      "model": "phi-4",
+      "prompt_idx": 2,
+      "output": "The Khronos Group standardises Vulkan.",
+      "score": 1.0,
+      "detail": {
+        "any_of": [
+          "khronos"
+        ],
+        "hit": "khronos"
+      },
+      "latency_s": 1.4221441745758057,
+      "prompt_tokens": 93,
+      "completion_tokens": 10,
+      "gen_tok_s": 9.299064421128591,
+      "prompt_tok_s": 29.09641095770837
+    },
+    {
+      "task": "prose",
+      "model": "phi-4",
+      "prompt_idx": 0,
+      "output": "In the realm where silicon dreams align,  \nOpen-source drivers weave a code divine.  \nThrough gates of light, they guide the pixel's flow,  \nUnveiling worlds where unseen currents grow.",
+      "score": 1.0,
+      "detail": {
+        "words": 30,
+        "distinct": 28,
+        "type_token_ratio": 0.933
+      },
+      "latency_s": 5.265665531158447,
+      "prompt_tokens": 35,
+      "completion_tokens": 41,
+      "gen_tok_s": 8.685585000630235,
+      "prompt_tok_s": 66.06017137895888
+    },
+    {
+      "task": "codegen",
+      "model": "phi-4",
+      "prompt_idx": 0,
+      "output": "```python\nimport re\n\ndef is_palindrome(s: str) -> bool:\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_s = re.sub(r'[^a-zA-Z0-9]', '', s).lower()\n    # Check if the cleaned string is equal to its reverse\n    return cleaned_s == cleaned_s[::-1]\n```",
+      "score": 1.0,
+      "detail": {
+        "passed": 5,
+        "total": 5
+      },
+      "latency_s": 9.294318914413452,
+      "prompt_tokens": 58,
+      "completion_tokens": 75,
+      "gen_tok_s": 8.661478248718389,
+      "prompt_tok_s": 93.24489001925988
+    },
+    {
+      "task": "codereview",
+      "model": "phi-4",
+      "prompt_idx": 0,
+      "output": "The bug in the code is that the loop starts at index 1 instead of 0, which causes the first element of the list `nums` to be excluded from the sum, leading to an incorrect average calculation. To fix this, the loop should start at index 0.",
+      "score": 1.0,
+      "detail": {
+        "any_of": [
+          "range(1",
+          "range(0",
+          "range(len",
+          "off-by-one",
+          "off by one",
+          "index 0",
+          "starts at 1",
+          "start at 1",
+          "starts at 0",
+          "start at 0",
+          "starts from 0",
+          "start from 0",
+          "starting from 0",
+          "skip",
+          "first element",
+          "first number",
+          "first item",
+          "first value",
+          "include the first",
+          "missing the first",
+          "missing first",
+          "doesn't include the first",
+          "does not include the first",
+          "should start at 0"
+        ],
+        "hit": "index 0"
+      },
+      "latency_s": 8.197097539901733,
+      "prompt_tokens": 67,
+      "completion_tokens": 58,
+      "gen_tok_s": 8.356625024259426,
+      "prompt_tok_s": 54.2380125896951
+    },
+    {
+      "task": "analyze",
+      "model": "gemma-4-e2b",
+      "prompt_idx": 0,
+      "output": "Vulkan was released in 2016.",
+      "score": 1.0,
+      "detail": {
+        "any_of": [
+          "2016"
+        ],
+        "hit": "2016"
+      },
+      "latency_s": 0.5134539604187012,
+      "prompt_tokens": 100,
+      "completion_tokens": 12,
+      "gen_tok_s": 48.22724678685968,
+      "prompt_tok_s": 382.8366665645769
+    },
+    {
+      "task": "analyze",
+      "model": "gemma-4-e2b",
+      "prompt_idx": 1,
+      "output": "Bas Nieuwenhuizen and David Airlie.",
+      "score": 1.0,
+      "detail": {
+        "all_of": [
+          "bas",
+          "airlie"
+        ],
+        "present": [
+          "bas",
+          "airlie"
+        ]
+      },
+      "latency_s": 0.3140575885772705,
+      "prompt_tokens": 100,
+      "completion_tokens": 11,
+      "gen_tok_s": 44.93978069387021,
+      "prompt_tok_s": 163.60769848588515
+    },
+    {
+      "task": "analyze",
+      "model": "gemma-4-e2b",
+      "prompt_idx": 2,
+      "output": "Khronos Group",
+      "score": 1.0,
+      "detail": {
+        "any_of": [
+          "khronos"
+        ],
+        "hit": "khronos"
+      },
+      "latency_s": 0.1935594081878662,
+      "prompt_tokens": 101,
+      "completion_tokens": 5,
+      "gen_tok_s": 53.72877713303245,
+      "prompt_tok_s": 133.18443995943
+    },
+    {
+      "task": "prose",
+      "model": "gemma-4-e2b",
+      "prompt_idx": 0,
+      "output": "Code flows free, a shared design,\nOn open ground, its power shines.\nNo locked-down gate, the source is clear,\nThe driver runs, dispelling fear.",
+      "score": 1.0,
+      "detail": {
+        "words": 25,
+        "distinct": 24,
+        "type_token_ratio": 0.96
+      },
+      "latency_s": 1.017655611038208,
+      "prompt_tokens": 40,
+      "completion_tokens": 39,
+      "gen_tok_s": 43.22728240051075,
+      "prompt_tok_s": 358.9149999551356
+    },
+    {
+      "task": "codegen",
+      "model": "gemma-4-e2b",
+      "prompt_idx": 0,
+      "output": "```python\nimport re\n\ndef is_palindrome(s: str) -> bool:\n    \"\"\"\n    Checks if a string is a palindrome, ignoring case and non-alphanumeric characters.\n\n    Args:\n        s: The input string.\n\n    Returns:\n        True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # 1. Filter out non-alphanumeric characters and convert to lowercase\n    filtered_chars = [char.lower() for char in s if char.isalnum()]\n    \n    # 2. Join the characters to form the cleaned string\n    cleaned_s = \"\".join(filtered_chars)\n    \n    # 3. Check if the cleaned string is a palindrome\n    # A string is a palindrome if it reads the same forwards and backwards\n    return cleaned_s == cleaned_s[::-1]\n```",
+      "score": 1.0,
+      "detail": {
+        "passed": 5,
+        "total": 5
+      },
+      "latency_s": 4.574714183807373,
+      "prompt_tokens": 64,
+      "completion_tokens": 189,
+      "gen_tok_s": 42.57074119714781,
+      "prompt_tok_s": 498.55885331463736
+    },
+    {
+      "task": "codereview",
+      "model": "gemma-4-e2b",
+      "prompt_idx": 0,
+      "output": "The code incorrectly skips the first element of the list when calculating the total sum.",
+      "score": 1.0,
+      "detail": {
+        "any_of": [
+          "range(1",
+          "range(0",
+          "range(len",
+          "off-by-one",
+          "off by one",
+          "index 0",
+          "starts at 1",
+          "start at 1",
+          "starts at 0",
+          "start at 0",
+          "starts from 0",
+          "start from 0",
+          "starting from 0",
+          "skip",
+          "first element",
+          "first number",
+          "first item",
+          "first value",
+          "include the first",
+          "missing the first",
+          "missing first",
+          "doesn't include the first",
+          "does not include the first",
+          "should start at 0"
+        ],
+        "hit": "skip"
+      },
+      "latency_s": 0.6115250587463379,
+      "prompt_tokens": 78,
+      "completion_tokens": 17,
+      "gen_tok_s": 44.54751516580847,
+      "prompt_tok_s": 348.2220585280922
+    }
+  ]
+}

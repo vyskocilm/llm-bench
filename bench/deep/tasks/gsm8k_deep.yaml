@@ -1,0 +1,9 @@
+include: gsm8k.yaml
+task: gsm8k_deep
+generation_kwargs:
+  until: []
+  max_gen_toks: 8192
+  temperature: 0.6
+  do_sample: true
+metadata:
+  version: 3.0-deep

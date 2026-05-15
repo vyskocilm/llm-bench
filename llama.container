@@ -1,0 +1,51 @@
+# Quadlet: rootless user unit.
+# Install: cp llama.container ~/.config/containers/systemd/
+#          systemctl --user daemon-reload
+#          systemctl --user start llama.service
+#
+# Container access to the iGPU requires the host's render/video gids inside
+# the container. runc ignores --group-add=keep-groups, and crun is not
+# available on the host. Workaround: --userns=host disables uid namespace
+# remapping so the container runs as the host user with all supplementary
+# groups (including render), giving direct /dev/dri/renderD* access.
+[Unit]
+Description=llama.cpp server (Vulkan/RADV, gfx1151)
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=localhost/llama-vulkan:latest
+ContainerName=llama-server
+PublishPort=127.0.0.1:8080:8080
+
+# Project models dir. Adjust if you move the repo.
+Volume=%h/projects/vyskocilm/ollama/models:/models:Z,ro
+
+# DRI render nodes; Vulkan loader walks /dev/dri/renderD*.
+AddDevice=/dev/dri
+
+# RADV only — block other ICDs (Intel iGPU on the same host) from being picked.
+Environment=AMD_VULKAN_ICD=RADV
+# Optional debug — uncomment to see device enumeration in journal.
+# Environment=VK_LOADER_DEBUG=all
+
+# runc-compatible: --userns=host bypasses the rootless uid remap so the
+# container's process keeps the host user's supplementary groups (render/video).
+PodmanArgs=--userns=host --security-opt=label=disable
+
+# llama-server args. Model path resolves inside the container via the Volume above.
+Exec=--host 0.0.0.0 --port 8080 \
+     --model /models/qwen2.5-3b-instruct-q4_k_m.gguf \
+     --alias qwen2.5-3b \
+     --n-gpu-layers 999 \
+     --ctx-size 8192 \
+     --parallel 2 \
+     --threads 8
+
+[Service]
+Restart=on-failure
+RestartSec=5
+TimeoutStartSec=120
+
+[Install]
+WantedBy=default.target

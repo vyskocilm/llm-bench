@@ -1,0 +1,128 @@
+{
+  "results": {
+    "drop": {
+      "alias": "drop",
+      "em,none": 0.0,
+      "em_stderr,none": 0.0,
+      "f1,none": 0.09050000000000002,
+      "f1_stderr,none": 0.015075148457315463
+    }
+  },
+  "group_subtasks": {
+    "drop": []
+  },
+  "configs": {
+    "drop": {
+      "task": "drop",
+      "dataset_path": "EleutherAI/drop",
+      "training_split": "train",
+      "validation_split": "validation",
+      "process_docs": "def process_docs(dataset):\n    def _process(doc):\n        return {\n            \"id\": doc[\"query_id\"],\n            \"passage\": doc[\"passage\"],\n            \"question\": doc[\"question\"],\n            \"answers\": get_answers(doc),\n        }\n\n    return dataset.map(_process)\n",
+      "doc_to_text": "{{passage}} {{question}}",
+      "doc_to_target": "{{ answer|join(',')}}",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    preds, golds = results, doc[\"answers\"]\n    max_em = 0\n    max_f1 = 0\n    for gold_answer in golds:\n        exact_match, f1_score = get_metrics(preds, gold_answer)\n        if gold_answer[0].strip():\n            max_em = max(max_em, exact_match)\n            max_f1 = max(max_f1, f1_score)\n    return {\"em\": max_em, \"f1\": max_f1}\n",
+      "description": "",
+      "target_delimiter": "",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": "<function process_docs at 0x7ff1c4c72b90>",
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "{{passage}} {{question}}",
+        "doc_to_choice": null,
+        "doc_to_target": "{{ answer|join(',')}}",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": ""
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "em",
+          "aggregation": "mean",
+          "higher_is_better": true
+        },
+        {
+          "metric": "f1",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "."
+        ]
+      },
+      "repeats": 1,
+      "should_decontaminate": true,
+      "doc_to_decontamination_query": "{{passage}} {{question}}",
+      "metadata": {
+        "version": 3.0,
+        "base_url": "http://127.0.0.1:18080/v1/chat/completions",
+        "model": "smollm2-1.7b",
+        "num_concurrent": 1,
+        "tokenized_requests": false,
+        "tokenizer_backend": null
+      }
+    }
+  },
+  "versions": {
+    "drop": 3.0
+  },
+  "n-shot": {
+    "drop": 0
+  },
+  "higher_is_better": {
+    "drop": {
+      "em": true,
+      "f1": true
+    }
+  },
+  "n-samples": {
+    "drop": {
+      "original": 9536,
+      "effective": 100
+    }
+  },
+  "config": {
+    "model": "local-chat-completions",
+    "model_args": {
+      "base_url": "http://127.0.0.1:18080/v1/chat/completions",
+      "model": "smollm2-1.7b",
+      "num_concurrent": 1,
+      "tokenized_requests": false,
+      "tokenizer_backend": null
+    },
+    "batch_size": "1",
+    "batch_sizes": [],
+    "device": "cuda:0",
+    "use_cache": null,
+    "limit": 100.0,
+    "bootstrap_iters": 100000,
+    "gen_kwargs": {},
+    "random_seed": 0,
+    "numpy_seed": 1234,
+    "torch_seed": 1234,
+    "fewshot_seed": 1234
+  },
+  "git_hash": null,
+  "date": 1778503299.8193302,
+  "pretty_env_info": "N/A (torch not installed)",
+  "transformers_version": "5.8.0",
+  "lm_eval_version": "0.4.11",
+  "upper_git_hash": null,
+  "task_hashes": {},
+  "model_source": "local-chat-completions",
+  "model_name": "smollm2-1.7b",
+  "model_name_sanitized": "smollm2-1.7b",
+  "system_instruction": null,
+  "system_instruction_sha": null,
+  "fewshot_as_multiturn": true,
+  "chat_template": "",
+  "chat_template_sha": null,
+  "total_evaluation_time_seconds": "56.106535178998456"
+}

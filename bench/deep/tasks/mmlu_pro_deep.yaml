@@ -1,0 +1,8 @@
+include: mmlu_pro_philosophy.yaml
+task: mmlu_pro_deep
+generation_kwargs:
+  max_gen_toks: 8192
+  temperature: 0.6
+  do_sample: true
+metadata:
+  version: 1.0-deep

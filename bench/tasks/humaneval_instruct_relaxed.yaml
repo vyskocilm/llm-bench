@@ -1,0 +1,19 @@
+# Override of humaneval_instruct with the aggressive code-completion stops
+# removed. The original stops (\nclass, \ndef, \n#, \nif, \nprint) were
+# designed for base completion models that emit only the function body.
+# Chat-tuned instruct models naturally emit helper defs, comments, and
+# control flow inside their answer — those tokens trip the early-stop
+# and cut the function body before it's complete, depressing scores by
+# 0.2-0.5 absolute.
+#
+# Rely on the closing ``` code-fence (captured by build_predictions_instruct
+# filter) + max_gen_toks=1024 cap. Output is slightly longer; scoring is
+# unaffected because the filter strips everything after the closing fence.
+include: humaneval_instruct.yaml
+task: humaneval_instruct_relaxed
+generation_kwargs:
+  until: []
+  do_sample: false
+  max_gen_toks: 1024
+metadata:
+  version: 4.0-relaxed

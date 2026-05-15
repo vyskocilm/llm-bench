@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>llama.cpp / Radeon 860M — OSS bench</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/mvp.css">
+<style>
+  :root { --line-height: 1.4; }
+  body { max-width: 1100px; }
+  table { font-variant-numeric: tabular-nums; }
+  pre { font-size: .85rem; }
+  article h4 { margin: 0 0 .25rem 0; }
+  section { margin-top: 2rem; }
+  .meta { color: var(--color-text-secondary); font-size: .85rem; }
+</style>
+</head>
+<body>
+<header>
+<h1>llama.cpp / Radeon 860M — OSS bench</h1>
+<p class="meta">
+Rendered 2026-05-11 12:16 UTC &middot; seed=42 &middot; schema=1<br>
+llama.cpp commit: 838374375cb8c467c33c263be4801c19d1089763<br>built: 2026-05-11T10:07:09+02:00<br>host:  Linux 7.0.2-1-default #1 SMP PREEMPT_DYNAMIC Tue Apr 28 04:27:33 UTC 2026 (46da294) x86_64<br>cpu:   AMD Ryzen AI 7 PRO 350 w/ Radeon 860M
+</p>
+
+</header>
+
+<main>
+<h2>Scores</h2>
+<p>Each cell links to the per-prompt output that produced it.
+Colour: <span style="background:#cdeacd;padding:.1rem .3rem">≥ 0.99</span>
+ <span style="background:#fff1c2;padding:.1rem .3rem">≥ 0.50</span>
+ <span style="background:#ffd6cc;padding:.1rem .3rem">&gt; 0</span>
+ <span style="background:#f5c9c1;padding:.1rem .3rem">= 0</span>.</p>
+<table>
+<thead><tr><th>model</th><th>analyze</th><th>prose</th><th>codegen</th><th>codereview</th></tr></thead>
+<tbody><tr><td><code>smollm2-1.7b</code></td><td><a href="#d-smollm2-1-7b-analyze-0" style="background:#fff1c2;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">0.83</a></td><td><a href="#d-smollm2-1-7b-prose-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td><td><a href="#d-smollm2-1-7b-codegen-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td><td><a href="#d-smollm2-1-7b-codereview-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td></tr><tr><td><code>olmo2-7b</code></td><td><a href="#d-olmo2-7b-analyze-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td><td><a href="#d-olmo2-7b-prose-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td><td><a href="#d-olmo2-7b-codegen-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td><td><a href="#d-olmo2-7b-codereview-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td></tr><tr><td><code>mistral-7b-v0.3</code></td><td><a href="#d-mistral-7b-v0-3-analyze-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td><td><a href="#d-mistral-7b-v0-3-prose-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td><td><a href="#d-mistral-7b-v0-3-codegen-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td><td><a href="#d-mistral-7b-v0-3-codereview-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td></tr><tr><td><code>qwen3-8b</code></td><td><a href="#d-qwen3-8b-analyze-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td><td><a href="#d-qwen3-8b-prose-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td><td><a href="#d-qwen3-8b-codegen-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td><td><a href="#d-qwen3-8b-codereview-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td></tr><tr><td><code>mistral-nemo-2407</code></td><td><a href="#d-mistral-nemo-2407-analyze-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td><td><a href="#d-mistral-nemo-2407-prose-0" style="background:#fff1c2;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">0.78</a></td><td><a href="#d-mistral-nemo-2407-codegen-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td><td><a href="#d-mistral-nemo-2407-codereview-0" style="background:#f5c9c1;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">0.00</a></td></tr><tr><td><code>phi-4</code></td><td><a href="#d-phi-4-analyze-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td><td><a href="#d-phi-4-prose-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td><td><a href="#d-phi-4-codegen-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td><td><a href="#d-phi-4-codereview-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td></tr><tr><td><code>gemma-4-e2b</code></td><td><a href="#d-gemma-4-e2b-analyze-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td><td><a href="#d-gemma-4-e2b-prose-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td><td><a href="#d-gemma-4-e2b-codegen-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td><td><a href="#d-gemma-4-e2b-codereview-0" style="background:#cdeacd;padding:.15rem .4rem;border-radius:.25rem;text-decoration:none;">1.00</a></td></tr></tbody>
+</table>
+
+<h2>Throughput (avg tok/s)</h2>
+<table>
+<thead><tr><th>model</th><th>gen</th><th>prompt</th><th>samples</th></tr></thead>
+<tbody><tr><td><code>smollm2-1.7b</code></td><td>73.1</td><td>467.6</td><td>6</td></tr><tr><td><code>olmo2-7b</code></td><td>20.2</td><td>126.0</td><td>6</td></tr><tr><td><code>mistral-7b-v0.3</code></td><td>18.8</td><td>120.7</td><td>6</td></tr><tr><td><code>qwen3-8b</code></td><td>16.8</td><td>129.1</td><td>6</td></tr><tr><td><code>mistral-nemo-2407</code></td><td>11.6</td><td>87.2</td><td>6</td></tr><tr><td><code>phi-4</code></td><td>8.9</td><td>56.5</td><td>6</td></tr><tr><td><code>gemma-4-e2b</code></td><td>46.2</td><td>314.2</td><td>6</td></tr></tbody>
+</table>
+
+<h2>Details</h2>
+<section><h2 id="m-smollm2-1.7b"><code>smollm2-1.7b</code></h2><article id="d-smollm2-1-7b-analyze-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>analyze / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 0.23s &middot; gen 80.7 tok/s &middot; prompt 630.3 tok/s &middot; tokens p=107 g=5</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">2016</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;any_of&quot;: [
+    &quot;2016&quot;
+  ],
+  &quot;hit&quot;: &quot;2016&quot;
+}</pre></details></article><article id="d-smollm2-1-7b-analyze-1" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>analyze / prompt 1 &mdash; score <strong>0.50</strong></h4><p><small>latency 0.15s &middot; gen 74.6 tok/s &middot; prompt 287.6 tok/s &middot; tokens p=107 g=8</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">Bas Nieuwenhuizen</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;all_of&quot;: [
+    &quot;bas&quot;,
+    &quot;airlie&quot;
+  ],
+  &quot;present&quot;: [
+    &quot;bas&quot;
+  ]
+}</pre></details></article><article id="d-smollm2-1-7b-analyze-2" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>analyze / prompt 2 &mdash; score <strong>1.00</strong></h4><p><small>latency 0.11s &middot; gen 81.4 tok/s &middot; prompt 313.5 tok/s &middot; tokens p=108 g=5</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">Khronos Group</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;any_of&quot;: [
+    &quot;khronos&quot;
+  ],
+  &quot;hit&quot;: &quot;khronos&quot;
+}</pre></details></article><article id="d-smollm2-1-7b-prose-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>prose / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 0.59s &middot; gen 68.5 tok/s &middot; prompt 629.7 tok/s &middot; tokens p=41 g=35</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">In code, the GPU sings,
+Open-source, it sings.
+Each line, a new song,
+For the world&#x27;s delight, it&#x27;s so.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;words&quot;: 22,
+  &quot;distinct&quot;: 18,
+  &quot;type_token_ratio&quot;: 0.818
+}</pre></details></article><article id="d-smollm2-1-7b-codegen-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>codegen / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 0.88s &middot; gen 67.1 tok/s &middot; prompt 466.3 tok/s &middot; tokens p=72 g=48</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">```python
+def is_palindrome(s: str) -&gt; bool:
+    s = &#x27;&#x27;.join(c for c in s if c.isalnum()).lower()
+    return s == s[::-1]
+```</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;passed&quot;: 5,
+  &quot;total&quot;: 5
+}</pre></details></article><article id="d-smollm2-1-7b-codereview-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>codereview / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 2.37s &middot; gen 66.2 tok/s &middot; prompt 478.1 tok/s &middot; tokens p=75 g=146</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">The bug in this code is that it&#x27;s not correctly handling the case where the input list is empty. The function will raise a ZeroDivisionError when it tries to divide by the length of the list, because len(nums) will be 0. To fix this, you should add a check for this case and return a special value (like None or a specific constant) or raise a custom error. Here&#x27;s an example:
+
+```python
+def average(nums):
+    if len(nums) == 0:
+        return None
+    total = 0
+    for i in range(1, len(nums)):
+        total += nums[i]
+    return total / len(nums)
+```</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;any_of&quot;: [
+    &quot;range(1&quot;,
+    &quot;range(0&quot;,
+    &quot;range(len&quot;,
+    &quot;off-by-one&quot;,
+    &quot;off by one&quot;,
+    &quot;index 0&quot;,
+    &quot;starts at 1&quot;,
+    &quot;start at 1&quot;,
+    &quot;starts at 0&quot;,
+    &quot;start at 0&quot;,
+    &quot;starts from 0&quot;,
+    &quot;start from 0&quot;,
+    &quot;starting from 0&quot;,
+    &quot;skip&quot;,
+    &quot;first element&quot;,
+    &quot;first number&quot;,
+    &quot;first item&quot;,
+    &quot;first value&quot;,
+    &quot;include the first&quot;,
+    &quot;missing the first&quot;,
+    &quot;missing first&quot;,
+    &quot;doesn&#x27;t include the first&quot;,
+    &quot;does not include the first&quot;,
+    &quot;should start at 0&quot;
+  ],
+  &quot;hit&quot;: &quot;range(1&quot;
+}</pre></details></article></section><section><h2 id="m-olmo2-7b"><code>olmo2-7b</code></h2><article id="d-olmo2-7b-analyze-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>analyze / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 0.77s &middot; gen 26.3 tok/s &middot; prompt 147.9 tok/s &middot; tokens p=97 g=3</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">2016</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;any_of&quot;: [
+    &quot;2016&quot;
+  ],
+  &quot;hit&quot;: &quot;2016&quot;
+}</pre></details></article><article id="d-olmo2-7b-analyze-1" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>analyze / prompt 1 &mdash; score <strong>1.00</strong></h4><p><small>latency 0.79s &middot; gen 19.0 tok/s &middot; prompt 71.2 tok/s &middot; tokens p=98 g=12</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">Bas Nieuwenhuizen and David Airlie</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;all_of&quot;: [
+    &quot;bas&quot;,
+    &quot;airlie&quot;
+  ],
+  &quot;present&quot;: [
+    &quot;bas&quot;,
+    &quot;airlie&quot;
+  ]
+}</pre></details></article><article id="d-olmo2-7b-analyze-2" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>analyze / prompt 2 &mdash; score <strong>1.00</strong></h4><p><small>latency 0.39s &middot; gen 21.7 tok/s &middot; prompt 69.5 tok/s &middot; tokens p=98 g=5</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">Khronos Group</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;any_of&quot;: [
+    &quot;khronos&quot;
+  ],
+  &quot;hit&quot;: &quot;khronos&quot;
+}</pre></details></article><article id="d-olmo2-7b-prose-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>prose / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 2.26s &middot; gen 18.0 tok/s &middot; prompt 140.6 tok/s &middot; tokens p=40 g=36</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">In open arms, the code lies bare,
+A gift to all, software fair.
+NVIDIA&#x27;s secrets, now untied,
+In freedom&#x27;s grasp, no longer hide.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;words&quot;: 25,
+  &quot;distinct&quot;: 23,
+  &quot;type_token_ratio&quot;: 0.92
+}</pre></details></article><article id="d-olmo2-7b-codegen-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>codegen / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 2.62s &middot; gen 17.9 tok/s &middot; prompt 202.6 tok/s &middot; tokens p=63 g=41</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">```python
+def is_palindrome(s: str) -&gt; bool:
+    s = &#x27;&#x27;.join(c for c in s.lower() if c.isalnum())
+    return s == s[::-1]
+```</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;passed&quot;: 5,
+  &quot;total&quot;: 5
+}</pre></details></article><article id="d-olmo2-7b-codereview-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>codereview / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 1.93s &middot; gen 18.1 tok/s &middot; prompt 124.0 tok/s &middot; tokens p=73 g=24</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">The bug is that the loop starts at index 1, omitting the first element of the list `nums`.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;any_of&quot;: [
+    &quot;range(1&quot;,
+    &quot;range(0&quot;,
+    &quot;range(len&quot;,
+    &quot;off-by-one&quot;,
+    &quot;off by one&quot;,
+    &quot;index 0&quot;,
+    &quot;starts at 1&quot;,
+    &quot;start at 1&quot;,
+    &quot;starts at 0&quot;,
+    &quot;start at 0&quot;,
+    &quot;starts from 0&quot;,
+    &quot;start from 0&quot;,
+    &quot;starting from 0&quot;,
+    &quot;skip&quot;,
+    &quot;first element&quot;,
+    &quot;first number&quot;,
+    &quot;first item&quot;,
+    &quot;first value&quot;,
+    &quot;include the first&quot;,
+    &quot;missing the first&quot;,
+    &quot;missing first&quot;,
+    &quot;doesn&#x27;t include the first&quot;,
+    &quot;does not include the first&quot;,
+    &quot;should start at 0&quot;
+  ],
+  &quot;hit&quot;: &quot;first element&quot;
+}</pre></details></article></section><section><h2 id="m-mistral-7b-v0.3"><code>mistral-7b-v0.3</code></h2><article id="d-mistral-7b-v0-3-analyze-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>analyze / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 1.38s &middot; gen 18.9 tok/s &middot; prompt 151.1 tok/s &middot; tokens p=104 g=13</small></p><details><summary>output</summary><pre style="white-space:pre-wrap"> Vulkan was released in 2016.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;any_of&quot;: [
+    &quot;2016&quot;
+  ],
+  &quot;hit&quot;: &quot;2016&quot;
+}</pre></details></article><article id="d-mistral-7b-v0-3-analyze-1" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>analyze / prompt 1 &mdash; score <strong>1.00</strong></h4><p><small>latency 1.13s &middot; gen 18.7 tok/s &middot; prompt 56.7 tok/s &middot; tokens p=104 g=18</small></p><details><summary>output</summary><pre style="white-space:pre-wrap"> Bas Nieuwenhuizen and David Airlie originally wrote RADV.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;all_of&quot;: [
+    &quot;bas&quot;,
+    &quot;airlie&quot;
+  ],
+  &quot;present&quot;: [
+    &quot;bas&quot;,
+    &quot;airlie&quot;
+  ]
+}</pre></details></article><article id="d-mistral-7b-v0-3-analyze-2" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>analyze / prompt 2 &mdash; score <strong>1.00</strong></h4><p><small>latency 0.45s &middot; gen 21.1 tok/s &middot; prompt 61.2 tok/s &middot; tokens p=105 g=6</small></p><details><summary>output</summary><pre style="white-space:pre-wrap"> The Khronos Group</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;any_of&quot;: [
+    &quot;khronos&quot;
+  ],
+  &quot;hit&quot;: &quot;khronos&quot;
+}</pre></details></article><article id="d-mistral-7b-v0-3-prose-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>prose / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 2.47s &middot; gen 18.1 tok/s &middot; prompt 135.2 tok/s &middot; tokens p=34 g=40</small></p><details><summary>output</summary><pre style="white-space:pre-wrap"> Silicon dreams in open air,
+Code weaves, like stars in a lair.
+NVIDIA, AMD, all share,
+United by open-source flare.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;words&quot;: 21,
+  &quot;distinct&quot;: 19,
+  &quot;type_token_ratio&quot;: 0.905
+}</pre></details></article><article id="d-mistral-7b-v0-3-codegen-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>codegen / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 3.32s &middot; gen 18.3 tok/s &middot; prompt 201.2 tok/s &middot; tokens p=63 g=55</small></p><details><summary>output</summary><pre style="white-space:pre-wrap"> ```python
+def is_palindrome(s: str) -&gt; bool:
+    s = &#x27;&#x27;.join(c.lower() for c in s if c.isalnum())
+    return s == s[::-1]
+```</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;passed&quot;: 5,
+  &quot;total&quot;: 5
+}</pre></details></article><article id="d-mistral-7b-v0-3-codereview-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>codereview / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 8.64s &middot; gen 17.8 tok/s &middot; prompt 119.0 tok/s &middot; tokens p=79 g=142</small></p><details><summary>output</summary><pre style="white-space:pre-wrap"> The bug in your code is that it does not include the first number in the sum when calculating the average. The correct loop should start from 0 instead of 1. Here&#x27;s the corrected version:
+
+```python
+def average(nums):
+    total = 0
+    for i in range(len(nums)):
+        total += nums[i]
+    return total / len(nums)
+```
+Or even better, use a list comprehension for a more Pythonic solution:
+
+```python
+def average(nums):
+    return sum(nums) / len(nums)
+```</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;any_of&quot;: [
+    &quot;range(1&quot;,
+    &quot;range(0&quot;,
+    &quot;range(len&quot;,
+    &quot;off-by-one&quot;,
+    &quot;off by one&quot;,
+    &quot;index 0&quot;,
+    &quot;starts at 1&quot;,
+    &quot;start at 1&quot;,
+    &quot;starts at 0&quot;,
+    &quot;start at 0&quot;,
+    &quot;starts from 0&quot;,
+    &quot;start from 0&quot;,
+    &quot;starting from 0&quot;,
+    &quot;skip&quot;,
+    &quot;first element&quot;,
+    &quot;first number&quot;,
+    &quot;first item&quot;,
+    &quot;first value&quot;,
+    &quot;include the first&quot;,
+    &quot;missing the first&quot;,
+    &quot;missing first&quot;,
+    &quot;doesn&#x27;t include the first&quot;,
+    &quot;does not include the first&quot;,
+    &quot;should start at 0&quot;
+  ],
+  &quot;hit&quot;: &quot;range(len&quot;
+}</pre></details></article></section><section><h2 id="m-qwen3-8b"><code>qwen3-8b</code></h2><article id="d-qwen3-8b-analyze-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>analyze / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 1.64s &middot; gen 17.2 tok/s &middot; prompt 142.6 tok/s &middot; tokens p=100 g=16</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">Vulkan was released in 2016.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;any_of&quot;: [
+    &quot;2016&quot;
+  ],
+  &quot;hit&quot;: &quot;2016&quot;
+}</pre></details></article><article id="d-qwen3-8b-analyze-1" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>analyze / prompt 1 &mdash; score <strong>1.00</strong></h4><p><small>latency 1.55s &middot; gen 16.7 tok/s &middot; prompt 91.5 tok/s &middot; tokens p=101 g=23</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">RADV was originally written by Bas Nieuwenhuizen and David Airlie.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;all_of&quot;: [
+    &quot;bas&quot;,
+    &quot;airlie&quot;
+  ],
+  &quot;present&quot;: [
+    &quot;bas&quot;,
+    &quot;airlie&quot;
+  ]
+}</pre></details></article><article id="d-qwen3-8b-analyze-2" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>analyze / prompt 2 &mdash; score <strong>1.00</strong></h4><p><small>latency 0.69s &middot; gen 17.8 tok/s &middot; prompt 84.6 tok/s &middot; tokens p=101 g=9</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">Khronos Group</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;any_of&quot;: [
+    &quot;khronos&quot;
+  ],
+  &quot;hit&quot;: &quot;khronos&quot;
+}</pre></details></article><article id="d-qwen3-8b-prose-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>prose / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 3.18s &middot; gen 16.3 tok/s &middot; prompt 145.5 tok/s &middot; tokens p=41 g=47</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">Code flows wild, unshackled, free,  
+A GPU&#x27;s heart, open to me.  
+No locks, no chains, just pure compute,  
+A shared dream built by many, true.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;words&quot;: 26,
+  &quot;distinct&quot;: 24,
+  &quot;type_token_ratio&quot;: 0.923
+}</pre></details></article><article id="d-qwen3-8b-codegen-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>codegen / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 3.74s &middot; gen 16.2 tok/s &middot; prompt 199.4 tok/s &middot; tokens p=64 g=55</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">```python
+import re
+
+def is_palindrome(s: str) -&gt; bool:
+    cleaned = re.sub(r&#x27;[^a-zA-Z0-9]&#x27;, &#x27;&#x27;, s)
+    cleaned = cleaned.lower()
+    return cleaned == cleaned[::-1]
+```</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;passed&quot;: 5,
+  &quot;total&quot;: 5
+}</pre></details></article><article id="d-qwen3-8b-codereview-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>codereview / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 2.55s &middot; gen 16.6 tok/s &middot; prompt 111.3 tok/s &middot; tokens p=73 g=31</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">The code incorrectly starts the loop from index 1, skipping the first element of the list, leading to an incorrect average calculation.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;any_of&quot;: [
+    &quot;range(1&quot;,
+    &quot;range(0&quot;,
+    &quot;range(len&quot;,
+    &quot;off-by-one&quot;,
+    &quot;off by one&quot;,
+    &quot;index 0&quot;,
+    &quot;starts at 1&quot;,
+    &quot;start at 1&quot;,
+    &quot;starts at 0&quot;,
+    &quot;start at 0&quot;,
+    &quot;starts from 0&quot;,
+    &quot;start from 0&quot;,
+    &quot;starting from 0&quot;,
+    &quot;skip&quot;,
+    &quot;first element&quot;,
+    &quot;first number&quot;,
+    &quot;first item&quot;,
+    &quot;first value&quot;,
+    &quot;include the first&quot;,
+    &quot;missing the first&quot;,
+    &quot;missing first&quot;,
+    &quot;doesn&#x27;t include the first&quot;,
+    &quot;does not include the first&quot;,
+    &quot;should start at 0&quot;
+  ],
+  &quot;hit&quot;: &quot;skip&quot;
+}</pre></details></article></section><section><h2 id="m-mistral-nemo-2407"><code>mistral-nemo-2407</code></h2><article id="d-mistral-nemo-2407-analyze-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>analyze / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 2.10s &middot; gen 11.6 tok/s &middot; prompt 82.7 tok/s &middot; tokens p=88 g=12</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">Vulkan was released in 2016.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;any_of&quot;: [
+    &quot;2016&quot;
+  ],
+  &quot;hit&quot;: &quot;2016&quot;
+}</pre></details></article><article id="d-mistral-nemo-2407-analyze-1" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>analyze / prompt 1 &mdash; score <strong>1.00</strong></h4><p><small>latency 0.99s &middot; gen 11.8 tok/s &middot; prompt 49.2 tok/s &middot; tokens p=88 g=10</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">Bas Nieuwenhuizen and David Airlie</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;all_of&quot;: [
+    &quot;bas&quot;,
+    &quot;airlie&quot;
+  ],
+  &quot;present&quot;: [
+    &quot;bas&quot;,
+    &quot;airlie&quot;
+  ]
+}</pre></details></article><article id="d-mistral-nemo-2407-analyze-2" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>analyze / prompt 2 &mdash; score <strong>1.00</strong></h4><p><small>latency 0.54s &middot; gen 13.3 tok/s &middot; prompt 50.0 tok/s &middot; tokens p=89 g=5</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">Khronos Group</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;any_of&quot;: [
+    &quot;khronos&quot;
+  ],
+  &quot;hit&quot;: &quot;khronos&quot;
+}</pre></details></article><article id="d-mistral-nemo-2407-prose-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>prose / prompt 0 &mdash; score <strong>0.78</strong></h4><p><small>latency 2.09s &middot; gen 11.2 tok/s &middot; prompt 98.6 tok/s &middot; tokens p=27 g=20</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">Open code,
+In silicon sea,
+Unlocks graphics&#x27; might,
+Sharing power free.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;words&quot;: 11,
+  &quot;distinct&quot;: 11,
+  &quot;type_token_ratio&quot;: 1.0
+}</pre></details></article><article id="d-mistral-nemo-2407-codegen-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>codegen / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 4.73s &middot; gen 10.8 tok/s &middot; prompt 119.4 tok/s &middot; tokens p=54 g=46</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">```python
+def is_palindrome(s: str) -&gt; bool:
+    s = &#x27;&#x27;.join(c.lower() for c in s if c.isalnum())
+    return s == s[::-1]
+```</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;passed&quot;: 5,
+  &quot;total&quot;: 5
+}</pre></details></article><article id="d-mistral-nemo-2407-codereview-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>codereview / prompt 0 &mdash; score <strong>0.00</strong></h4><p><small>latency 3.14s &middot; gen 11.0 tok/s &middot; prompt 123.6 tok/s &middot; tokens p=59 g=29</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">The bug is that the function doesn&#x27;t handle the case when the input list is empty, as it will cause a division by zero error.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;any_of&quot;: [
+    &quot;range(1&quot;,
+    &quot;range(0&quot;,
+    &quot;range(len&quot;,
+    &quot;off-by-one&quot;,
+    &quot;off by one&quot;,
+    &quot;index 0&quot;,
+    &quot;starts at 1&quot;,
+    &quot;start at 1&quot;,
+    &quot;starts at 0&quot;,
+    &quot;start at 0&quot;,
+    &quot;starts from 0&quot;,
+    &quot;start from 0&quot;,
+    &quot;starting from 0&quot;,
+    &quot;skip&quot;,
+    &quot;first element&quot;,
+    &quot;first number&quot;,
+    &quot;first item&quot;,
+    &quot;first value&quot;,
+    &quot;include the first&quot;,
+    &quot;missing the first&quot;,
+    &quot;missing first&quot;,
+    &quot;doesn&#x27;t include the first&quot;,
+    &quot;does not include the first&quot;,
+    &quot;should start at 0&quot;
+  ],
+  &quot;hit&quot;: null
+}</pre></details></article></section><section><h2 id="m-phi-4"><code>phi-4</code></h2><article id="d-phi-4-analyze-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>analyze / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 2.45s &middot; gen 9.5 tok/s &middot; prompt 65.9 tok/s &middot; tokens p=92 g=10</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">Vulkan was released in 2016.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;any_of&quot;: [
+    &quot;2016&quot;
+  ],
+  &quot;hit&quot;: &quot;2016&quot;
+}</pre></details></article><article id="d-phi-4-analyze-1" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>analyze / prompt 1 &mdash; score <strong>1.00</strong></h4><p><small>latency 2.52s &middot; gen 8.7 tok/s &middot; prompt 30.4 tok/s &middot; tokens p=93 g=19</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">RADV was originally written by Bas Nieuwenhuizen and David Airlie.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;all_of&quot;: [
+    &quot;bas&quot;,
+    &quot;airlie&quot;
+  ],
+  &quot;present&quot;: [
+    &quot;bas&quot;,
+    &quot;airlie&quot;
+  ]
+}</pre></details></article><article id="d-phi-4-analyze-2" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>analyze / prompt 2 &mdash; score <strong>1.00</strong></h4><p><small>latency 1.42s &middot; gen 9.3 tok/s &middot; prompt 29.1 tok/s &middot; tokens p=93 g=10</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">The Khronos Group standardises Vulkan.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;any_of&quot;: [
+    &quot;khronos&quot;
+  ],
+  &quot;hit&quot;: &quot;khronos&quot;
+}</pre></details></article><article id="d-phi-4-prose-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>prose / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 5.27s &middot; gen 8.7 tok/s &middot; prompt 66.1 tok/s &middot; tokens p=35 g=41</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">In the realm where silicon dreams align,  
+Open-source drivers weave a code divine.  
+Through gates of light, they guide the pixel&#x27;s flow,  
+Unveiling worlds where unseen currents grow.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;words&quot;: 30,
+  &quot;distinct&quot;: 28,
+  &quot;type_token_ratio&quot;: 0.933
+}</pre></details></article><article id="d-phi-4-codegen-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>codegen / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 9.29s &middot; gen 8.7 tok/s &middot; prompt 93.2 tok/s &middot; tokens p=58 g=75</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">```python
+import re
+
+def is_palindrome(s: str) -&gt; bool:
+    # Remove non-alphanumeric characters and convert to lowercase
+    cleaned_s = re.sub(r&#x27;[^a-zA-Z0-9]&#x27;, &#x27;&#x27;, s).lower()
+    # Check if the cleaned string is equal to its reverse
+    return cleaned_s == cleaned_s[::-1]
+```</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;passed&quot;: 5,
+  &quot;total&quot;: 5
+}</pre></details></article><article id="d-phi-4-codereview-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>codereview / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 8.20s &middot; gen 8.4 tok/s &middot; prompt 54.2 tok/s &middot; tokens p=67 g=58</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">The bug in the code is that the loop starts at index 1 instead of 0, which causes the first element of the list `nums` to be excluded from the sum, leading to an incorrect average calculation. To fix this, the loop should start at index 0.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;any_of&quot;: [
+    &quot;range(1&quot;,
+    &quot;range(0&quot;,
+    &quot;range(len&quot;,
+    &quot;off-by-one&quot;,
+    &quot;off by one&quot;,
+    &quot;index 0&quot;,
+    &quot;starts at 1&quot;,
+    &quot;start at 1&quot;,
+    &quot;starts at 0&quot;,
+    &quot;start at 0&quot;,
+    &quot;starts from 0&quot;,
+    &quot;start from 0&quot;,
+    &quot;starting from 0&quot;,
+    &quot;skip&quot;,
+    &quot;first element&quot;,
+    &quot;first number&quot;,
+    &quot;first item&quot;,
+    &quot;first value&quot;,
+    &quot;include the first&quot;,
+    &quot;missing the first&quot;,
+    &quot;missing first&quot;,
+    &quot;doesn&#x27;t include the first&quot;,
+    &quot;does not include the first&quot;,
+    &quot;should start at 0&quot;
+  ],
+  &quot;hit&quot;: &quot;index 0&quot;
+}</pre></details></article></section><section><h2 id="m-gemma-4-e2b"><code>gemma-4-e2b</code></h2><article id="d-gemma-4-e2b-analyze-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>analyze / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 0.51s &middot; gen 48.2 tok/s &middot; prompt 382.8 tok/s &middot; tokens p=100 g=12</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">Vulkan was released in 2016.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;any_of&quot;: [
+    &quot;2016&quot;
+  ],
+  &quot;hit&quot;: &quot;2016&quot;
+}</pre></details></article><article id="d-gemma-4-e2b-analyze-1" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>analyze / prompt 1 &mdash; score <strong>1.00</strong></h4><p><small>latency 0.31s &middot; gen 44.9 tok/s &middot; prompt 163.6 tok/s &middot; tokens p=100 g=11</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">Bas Nieuwenhuizen and David Airlie.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;all_of&quot;: [
+    &quot;bas&quot;,
+    &quot;airlie&quot;
+  ],
+  &quot;present&quot;: [
+    &quot;bas&quot;,
+    &quot;airlie&quot;
+  ]
+}</pre></details></article><article id="d-gemma-4-e2b-analyze-2" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>analyze / prompt 2 &mdash; score <strong>1.00</strong></h4><p><small>latency 0.19s &middot; gen 53.7 tok/s &middot; prompt 133.2 tok/s &middot; tokens p=101 g=5</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">Khronos Group</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;any_of&quot;: [
+    &quot;khronos&quot;
+  ],
+  &quot;hit&quot;: &quot;khronos&quot;
+}</pre></details></article><article id="d-gemma-4-e2b-prose-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>prose / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 1.02s &middot; gen 43.2 tok/s &middot; prompt 358.9 tok/s &middot; tokens p=40 g=39</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">Code flows free, a shared design,
+On open ground, its power shines.
+No locked-down gate, the source is clear,
+The driver runs, dispelling fear.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;words&quot;: 25,
+  &quot;distinct&quot;: 24,
+  &quot;type_token_ratio&quot;: 0.96
+}</pre></details></article><article id="d-gemma-4-e2b-codegen-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>codegen / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 4.57s &middot; gen 42.6 tok/s &middot; prompt 498.6 tok/s &middot; tokens p=64 g=189</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">```python
+import re
+
+def is_palindrome(s: str) -&gt; bool:
+    &quot;&quot;&quot;
+    Checks if a string is a palindrome, ignoring case and non-alphanumeric characters.
+
+    Args:
+        s: The input string.
+
+    Returns:
+        True if the string is a palindrome, False otherwise.
+    &quot;&quot;&quot;
+    # 1. Filter out non-alphanumeric characters and convert to lowercase
+    filtered_chars = [char.lower() for char in s if char.isalnum()]
+    
+    # 2. Join the characters to form the cleaned string
+    cleaned_s = &quot;&quot;.join(filtered_chars)
+    
+    # 3. Check if the cleaned string is a palindrome
+    # A string is a palindrome if it reads the same forwards and backwards
+    return cleaned_s == cleaned_s[::-1]
+```</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;passed&quot;: 5,
+  &quot;total&quot;: 5
+}</pre></details></article><article id="d-gemma-4-e2b-codereview-0" style="margin-bottom:1.5rem;border-left:4px solid #ccc;padding-left:1rem;"><h4>codereview / prompt 0 &mdash; score <strong>1.00</strong></h4><p><small>latency 0.61s &middot; gen 44.5 tok/s &middot; prompt 348.2 tok/s &middot; tokens p=78 g=17</small></p><details><summary>output</summary><pre style="white-space:pre-wrap">The code incorrectly skips the first element of the list when calculating the total sum.</pre></details><details><summary>scoring detail</summary><pre>{
+  &quot;any_of&quot;: [
+    &quot;range(1&quot;,
+    &quot;range(0&quot;,
+    &quot;range(len&quot;,
+    &quot;off-by-one&quot;,
+    &quot;off by one&quot;,
+    &quot;index 0&quot;,
+    &quot;starts at 1&quot;,
+    &quot;start at 1&quot;,
+    &quot;starts at 0&quot;,
+    &quot;start at 0&quot;,
+    &quot;starts from 0&quot;,
+    &quot;start from 0&quot;,
+    &quot;starting from 0&quot;,
+    &quot;skip&quot;,
+    &quot;first element&quot;,
+    &quot;first number&quot;,
+    &quot;first item&quot;,
+    &quot;first value&quot;,
+    &quot;include the first&quot;,
+    &quot;missing the first&quot;,
+    &quot;missing first&quot;,
+    &quot;doesn&#x27;t include the first&quot;,
+    &quot;does not include the first&quot;,
+    &quot;should start at 0&quot;
+  ],
+  &quot;hit&quot;: &quot;skip&quot;
+}</pre></details></article></section>
+</main>
+
+<footer>
+<p class="meta">Generated by <code>bench/render.py</code> from
+<code>bench/results.json</code>. CSS:
+<a href="https://unpkg.com/mvp.css">mvp.css</a>.</p>
+</footer>
+</body>
+</html>

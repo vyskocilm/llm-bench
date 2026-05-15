@@ -1,0 +1,10 @@
+include: hendrycks_math500.yaml
+task: math_deep
+generation_kwargs:
+  until: []
+  max_gen_toks: 8192
+  temperature: 0.6
+  do_sample: true
+num_fewshot: 0
+metadata:
+  version: 1.0-deep

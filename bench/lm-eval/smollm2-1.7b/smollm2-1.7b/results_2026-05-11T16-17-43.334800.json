@@ -1,0 +1,159 @@
+{
+  "results": {
+    "ifeval": {
+      "name": "ifeval",
+      "alias": "ifeval",
+      "sample_len": 541,
+      "prompt_level_strict_acc,none": 0.5138632162661737,
+      "prompt_level_strict_acc_stderr,none": 0.0215083020678561,
+      "inst_level_strict_acc,none": 0.6282973621103117,
+      "inst_level_strict_acc_stderr,none": "N/A",
+      "prompt_level_loose_acc,none": 0.5341959334565619,
+      "prompt_level_loose_acc_stderr,none": 0.02146619384119694,
+      "inst_level_loose_acc,none": 0.6486810551558753,
+      "inst_level_loose_acc_stderr,none": "N/A"
+    }
+  },
+  "group_subtasks": {},
+  "configs": {
+    "ifeval": {
+      "task": "ifeval",
+      "dataset_path": "google/IFEval",
+      "test_split": "train",
+      "doc_to_text": "prompt",
+      "doc_to_target": 0,
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    inp = InputExample(\n        key=doc[\"key\"],\n        instruction_id_list=doc[\"instruction_id_list\"],\n        prompt=doc[\"prompt\"],\n        kwargs=doc[\"kwargs\"],\n    )\n    response = results[0]\n\n    out_strict = test_instruction_following_strict(inp, response)\n    out_loose = test_instruction_following_loose(inp, response)\n\n    return {\n        \"prompt_level_strict_acc\": out_strict.follow_all_instructions,\n        \"inst_level_strict_acc\": out_strict.follow_instruction_list,\n        \"prompt_level_loose_acc\": out_loose.follow_all_instructions,\n        \"inst_level_loose_acc\": out_loose.follow_instruction_list,\n    }\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "prompt",
+        "doc_to_choice": null,
+        "doc_to_target": 0,
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "prompt_level_strict_acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        },
+        {
+          "metric": "inst_level_strict_acc",
+          "aggregation": "def agg_inst_level_acc(items):\n    flat_items = [item for sublist in items for item in sublist]\n    inst_level_acc = sum(flat_items) / len(flat_items)\n    return inst_level_acc\n",
+          "higher_is_better": true
+        },
+        {
+          "metric": "prompt_level_loose_acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        },
+        {
+          "metric": "inst_level_loose_acc",
+          "aggregation": "def agg_inst_level_acc(items):\n    flat_items = [item for sublist in items for item in sublist]\n    inst_level_acc = sum(flat_items) / len(flat_items)\n    return inst_level_acc\n",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [],
+        "do_sample": false,
+        "temperature": 0.0,
+        "max_gen_toks": 1280
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 4.0,
+        "base_url": "http://127.0.0.1:18080/v1/chat/completions",
+        "model": "smollm2-1.7b",
+        "num_concurrent": 4,
+        "tokenized_requests": false,
+        "tokenizer_backend": "huggingface",
+        "tokenizer": "HuggingFaceTB/SmolLM2-1.7B-Instruct",
+        "config_source": "/home/michal/.local/share/uv/tools/lm-eval/lib/python3.14/site-packages/lm_eval/tasks/ifeval/ifeval.yaml"
+      }
+    }
+  },
+  "versions": {
+    "ifeval": 4.0
+  },
+  "n-shot": {
+    "ifeval": 0
+  },
+  "higher_is_better": {
+    "ifeval": {
+      "prompt_level_strict_acc": true,
+      "inst_level_strict_acc": true,
+      "prompt_level_loose_acc": true,
+      "inst_level_loose_acc": true
+    }
+  },
+  "n-samples": {
+    "ifeval": {
+      "original": 541,
+      "effective": 541
+    }
+  },
+  "config": {
+    "model": "local-chat-completions",
+    "model_args": {
+      "base_url": "http://127.0.0.1:18080/v1/chat/completions",
+      "model": "smollm2-1.7b",
+      "num_concurrent": 4,
+      "tokenized_requests": false,
+      "tokenizer_backend": "huggingface",
+      "tokenizer": "HuggingFaceTB/SmolLM2-1.7B-Instruct"
+    },
+    "batch_size": "1",
+    "batch_sizes": [],
+    "device": "cuda:0",
+    "use_cache": null,
+    "limit": null,
+    "bootstrap_iters": 100000,
+    "gen_kwargs": {},
+    "random_seed": 42,
+    "numpy_seed": 42,
+    "torch_seed": 42,
+    "fewshot_seed": 42
+  },
+  "git_hash": null,
+  "date": 1778506082.783005,
+  "pretty_env_info": "N/A (torch not installed)",
+  "transformers_version": "5.8.0",
+  "lm_eval_version": "0.4.12",
+  "upper_git_hash": null,
+  "tokenizer_pad_token": [
+    "<|im_end|>",
+    "2"
+  ],
+  "tokenizer_eos_token": [
+    "<|im_end|>",
+    "2"
+  ],
+  "tokenizer_bos_token": [
+    "<|im_start|>",
+    "1"
+  ],
+  "eot_token_id": 2,
+  "max_length": 2047,
+  "task_hashes": {},
+  "model_source": "local-chat-completions",
+  "model_name": "smollm2-1.7b",
+  "model_name_sanitized": "smollm2-1.7b",
+  "system_instruction": null,
+  "system_instruction_sha": null,
+  "fewshot_as_multiturn": true,
+  "chat_template": "{% for message in messages %}{% if loop.first and messages[0]['role'] != 'system' %}{{ '<|im_start|>system\nYou are a helpful AI assistant named SmolLM, trained by Hugging Face<|im_end|>\n' }}{% endif %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant\n' }}{% endif %}",
+  "chat_template_sha": "872be49dbb638044ad01b60388f48d469ff2980e5f0dccdc22ec907db54d0788",
+  "total_evaluation_time_seconds": "2982.8922027219996"
+}
